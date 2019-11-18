@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>Spełnij swoje marzenia</title>
+        <meta name="description" content="Zbuduj oszczędności życia z pomocą tej aplikacji."/>
+        <meta name ="keywords" content="oszczędności, oszczędzanie, bilans przychodów i wydatków"/>
+        <link href="https://fonts.googleapis.com/css?family=Oswald:500|Roboto+Condensed&display=swap&subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>BudgetApp</h1>
+            <nav>
+                <ul class = "menu">
+                    <li><a href="addIncome.html"><span class="menuOption">DODAJ PRZYCHÓD</span></a></li>
+                    <li><a href="addExpense.html"><span class="menuOption">DODAJ WYDATEK</span></a></li>
+                    <li><a href="balance.html"><span class="menuOption">PRZEGLĄDAJ BILANS</span></a></li>
+                    <li><a href="settings.html"><span class="menuOption">USTAWIENIA</span></a></li>
+                    <li><a href="logout.html"><span class="menuOption">WYLOGUJ SIĘ</span></a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="form">
+            <form>
+                <label>Kwota:<input type="number"></label><br />
+                <label>Data:<input id= "datePicker" type="date" value="todaysDate"></label><br />
+                <label for="category">Kategoria:</label><br />
+                    <select id="category">
+                        <option>Wynagrodzenie</option>    
+                        <option>Odsetki bankowe</option>    
+                        <option>Sprzedaż</option>    
+                        <option>Inne</option>    
+                    </select><br />
+                <label>Komentarz:<textarea rows="4"></textarea></label><br />
+                <input type="submit" value="Dodaj" class="button">
+                <button class="button">Anuluj</button> 
+            </form>
+            </div>
+        </main>
+    </body>
+    <script>
+        Date.prototype.toDateInputValue = (function() 
+        {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0,10);
+        });
+            document.getElementById("datePicker").value = new Date().toDateInputValue();
+    </script>
+</html>
