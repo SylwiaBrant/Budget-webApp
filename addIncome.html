@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8"/>
@@ -10,43 +11,57 @@
     </head>
     <body>
         <header>
-            <h1>BudgetApp</h1>
             <nav>
-                <ul class = "menu">
-                    <li><a href="addIncome.html"><span class="menuOption">DODAJ PRZYCHÓD</span></a></li>
-                    <li><a href="addExpense.html"><span class="menuOption">DODAJ WYDATEK</span></a></li>
-                    <li><a href="balance.html"><span class="menuOption">PRZEGLĄDAJ BILANS</span></a></li>
-                    <li><a href="settings.html"><span class="menuOption">USTAWIENIA</span></a></li>
-                    <li><a href="logout.html"><span class="menuOption">WYLOGUJ SIĘ</span></a></li>
-                </ul>
+                <div class="main-nav">
+                    <h1>BudgetApp</h1>
+                    <ul class = "menu">
+                        <li><a href="addIncome.html"><span class="menuOption">DODAJ PRZYCHÓD</span></a></li>
+                        <li><a href="addExpense.html"><span class="menuOption">DODAJ WYDATEK</span></a></li>
+                        <li><a href="balance.html"><span class="menuOption">PRZEGLĄDAJ BILANS</span></a></li>
+                        <li><a href="settings.html"><span class="menuOption">USTAWIENIA</span></a></li>
+                        <li><a href="logout.html"><span class="menuOption">WYLOGUJ SIĘ</span></a></li>
+                    </ul>
+                </div>
             </nav>
         </header>
         <main>
-            <div class="form">
+            <div class="transaction-form">
             <form>
-                <label>Kwota:<input type="number"></label><br />
-                <label>Data:<input id= "datePicker" type="date" value="todaysDate"></label><br />
-                <label for="category">Kategoria:</label><br />
-                    <select id="category">
+                <div class="form-label">
+                    <label>Podaj wysokość przychodu:</label>
+                </div>
+                <div class="form-input">    
+                    <input type="number" id="moneyAmount">
+                </div>
+                <div class="form-label">
+                    <label>Podaj datę uzyskania przychodu:</label>
+                </div>
+                <div class="form-input">
+                    <input id= "transactionDate" type="date" value="todaysDate">
+                </div>
+                <div class="form-label">
+                    <label for="transactionCategory">Wybierz z listy rodzaj przychodu:</label>
+                </div>
+                <div class="form-input">
+                    <select id="transactionCategory">
                         <option>Wynagrodzenie</option>    
                         <option>Odsetki bankowe</option>    
                         <option>Sprzedaż</option>    
                         <option>Inne</option>    
-                    </select><br />
-                <label>Komentarz:<textarea rows="4"></textarea></label><br />
-                <input type="submit" value="Dodaj" class="button">
-                <button class="button">Anuluj</button> 
+                    </select>
+                </div>
+                <div class="form-label">
+                    <label>Dodaj komentarz (opcjonalne):</label>
+                </div>
+                <div class="form-input">
+                    <textarea rows="4" id="comment"></textarea>
+                </div>
+                <input type="submit" value="Dodaj" class="button" onclick="getTransactionData()">
+                <button class="button" onclick="BudgetAppMain">Anuluj</button> 
             </form>
             </div>
         </main>
+        <script src="script.js"></script>
     </body>
-    <script>
-        Date.prototype.toDateInputValue = (function() 
-        {
-            var local = new Date(this);
-            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-            return local.toJSON().slice(0,10);
-        });
-            document.getElementById("datePicker").value = new Date().toDateInputValue();
-    </script>
+        <footer>&copy 2019, Sylwia Brant</footer>
 </html>

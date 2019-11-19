@@ -1,47 +1,62 @@
 body
 {
     margin: 0;
-    padding: 2% 10%;
+    padding: 0 10%;
+    box-sizing: border-box;
     background-color: white;
-    font-family: 'Oswald', 'Roboto Condensed', sans-serif;
-    font-size: 20px;
+    font-family: 'Oswald', 'Roboto Condensed', Verdana;
+    font-size: 18px;
     font-stretch: expanded;
-    color: black;
+    color: #3c3c3c;
 }
 
-nav
+h1
 {
-    text-align: center;
-
+    font-size: 28px;
+    margin-left: 30px;
+    margin-top: 0;
+    float: left;
+    color: darkgray;
 }
 
+.main-nav
+{
+    width:100%;
+    height: 50px;
+    background-color: RGB(34,33,41); 
+}
 .menu
 {
-    display: inline-block; 
+    text-align: center;
+    margin: 0;
+    float: right;
     list-style-type: none;
     background-color: RGB(34,33,41);
-    padding: 10px;
+    padding: 0px 10px;
 }
 
 .menu a
 {
-    display: block;
+    display: inline-block;
+    text-decoration: none;
+    width: 150px;
+    color: darkgrey;
+    line-height: 50px;
     font-family: 'Oswald';
     font-size: 14px;
-    text-decoration: none;
-    color: darkgrey;
-
-
 }
+
+.menu a:hover
+{
+   background-color: RGB(36,38,41); 
+}
+
 ul > li
 {
-    display: block;
     float: left;
-    list-style-type: none; 
-    width: 150px;
 }
 
-.form
+.transaction-form
 {
     width: 300px;
     display: block;
@@ -50,34 +65,58 @@ ul > li
 
 form
 {
+    margin-top: 50px;
     width:300px;
- 
+
 }
 
-
-.form, .form textarea 
+.form-label
 {
+    margin-top: 20px
+}
+
+.form-input input, select, textarea
+{
+    width: 300px;
+    height: 30px;
+    box-sizing: border-box;
+    font-family: Verdana;
+    color: #3c3c3c;
+}
+
+.form-input textarea 
+{
+    height: 100px;
     display: block; 
     padding: 5px 10px; 
-    border-radius: 5px; 
+    border-radius: 3px; 
     background-color: #RBG(236,236,236);
 }
 
 .button, form [type=submit]
 {
     text-decoration: none;
-    font-family: 'Bebas Neue';
-    font-size: 20px;
-    color: white;
+    font-family: 'Oswald';
+    font-size: 16px;
+    color: darkgrey;
     background-color: RGB(34,33,41);
     width: 120px;
-    padding: 8px 20px;
-    margin-right: 10px;
-    border-radius: 10px;
+    height: 40px;
+    padding: 5px 20px;
+    margin: 20px 10px;
+    border: none;
+    border-radius: 8px;
 }
 
-.login-form
+.form input:focus, .form textarea:focus
 {
-    
-    
+    outline: none;
+    border: 1px solid darkgrey;
+}
+
+footer
+{
+    margin: 30px;
+    font-size: 12px;
+    text-align: center;
 }
