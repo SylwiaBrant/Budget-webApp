@@ -10,21 +10,14 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class = "login-form">
+        <header>
+            <div class = "nav-wrapper">
+                <h1>BudgetApp</h1>
+            </div>
+        </header>
+        <div class = "form-wrapper">
             <h2>Zaloguj się</h2>
-            <form class="form">
-                <div class="form-label">
-                    <label>Podaj imię:</label>
-                </div>
-                <div class="form-input">    
-                    <input type="text" id="firstname">
-                </div>
-                <div class="form-label">
-                    <label>Podaj nazwisko:</label>
-                </div>
-                <div class="form-input">
-                    <input id= "lastname" type="text">
-                </div>
+            <form class="input-form">
                 <div class="form-label">
                     <label>Podaj email:</label>
                 </div>
@@ -36,6 +29,9 @@
                 </div>
                 <div class="form-input">
                     <input id= "password" type="password">
+                </div>
+                <div class="buttons-wrapper">
+                    <input type="submit" value="Dołącz" class="button" onclick="getRegisterData()">
                 </div>
             </form>
         </div>

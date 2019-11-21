@@ -5,29 +5,35 @@
         <title>Spełnij swoje marzenia</title>
         <meta name="description" content="Zbuduj oszczędności życia z pomocą tej aplikacji."/>
         <meta name ="keywords" content="oszczędności, oszczędzanie, bilans przychodów i wydatków"/>
+        <link href="https://fonts.googleapis.com/css?family=Oswald:500|Roboto+Condensed&display=swap&subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="fontello/css/menu.css">
     </head>
     <body>
-        <nav class = "menu">
-                <ul>
-                    <li><a href="/addIncome.html">Dodaj przychód</a></li>
-                    <li><a href="/addExpense.html">Dodaj wydatek</a></li>
-                    <li><a href="balance.html">Przeglądaj bilans</a></li>
-                    <li><a href="/settings.html">Ustawienia</a></li>
-                    <li><a href="/logout.html">Wyloguj się</a></li>
-                </ul>
-            </nav>
-        Kwota: ….
-        Data: (w postaci rrrr-mm-dd np. 2018-01-30. Domyślnie wstaw aktualną datę)
-        Kategoria:
-        – Wynagrodzenie
-        – Odsetki bankowe
-        – Sprzedaż na allegro
-        – Inne
-        Komentarz (opcjonalnie): ….
-        [Dodaj] [Anuluj]
-
+         <div class="container">
+            <header>
+                <nav>
+                    <div class = "nav-wrapper">
+                        <h1>BudgetApp</h1>
+                        <button id="menu-dropdown-btn"><i class="icon-menu"></i></button>
+                    </div>
+                    <ul id="main-menu" class="closed">
+                        <li><a href="addIncome.html"><i class="icon-plus-circle"></i><span class="menuOption"> DODAJ PRZYCHÓD</span></a></li>
+                        <li><a href="addExpense.html"><i class="icon-minus-circle"></i><span class="menuOption"> DODAJ WYDATEK</span></a></li>
+                        <li><a href="balance.html"><i class="icon-signal"></i><span class="menuOption"> PRZEGLĄDAJ BILANS</span></a></li>
+                        <li><a href="settings.html"><i class="icon-cog"></i><span class="menuOption"> USTAWIENIA</span></a></li>
+                        <li><a href="logout.html"><i class="icon-export"></i><span class="menuOption"> WYLOGUJ SIĘ</span></a></li>
+                    </ul>
+                </nav>
+            </header>
+        <div>
+            <h3>Ostatnie 3 transakcje</h3>
+        </div>
+        <div>
+            <h3></h3>
+        </div>
+            <footer>&copy 2019, Sylwia Brant</footer>
+        </div>
+        <script src="script.js"></script>
     </body>
-    <script>
-    
-    </script>
 </html>

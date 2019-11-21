@@ -7,61 +7,67 @@
         <meta name="description" content="Zbuduj oszczędności życia z pomocą tej aplikacji."/>
         <meta name ="keywords" content="oszczędności, oszczędzanie, bilans przychodów i wydatków"/>
         <link href="https://fonts.googleapis.com/css?family=Oswald:500|Roboto+Condensed&display=swap&subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="fontello/css/menu.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header>
-            <nav>
-                <div class="main-nav">
-                    <h1>BudgetApp</h1>
-                    <ul class = "menu">
-                        <li><a href="addIncome.html"><span class="menuOption">DODAJ PRZYCHÓD</span></a></li>
-                        <li><a href="addExpense.html"><span class="menuOption">DODAJ WYDATEK</span></a></li>
-                        <li><a href="balance.html"><span class="menuOption">PRZEGLĄDAJ BILANS</span></a></li>
-                        <li><a href="settings.html"><span class="menuOption">USTAWIENIA</span></a></li>
-                        <li><a href="logout.html"><span class="menuOption">WYLOGUJ SIĘ</span></a></li>
+        <div class="container">
+            <header>
+                <nav>
+                    <div class = "nav-wrapper">
+                        <h1>BudgetApp</h1>
+                        <button id="menu-dropdown-btn"><i class="icon-menu"></i></button>
+                    </div>
+                    <ul id="main-menu" class="closed">
+                        <li><a href="addIncome.html"><i class="icon-plus-circle"></i><span class="menuOption"> DODAJ PRZYCHÓD</span></a></li>
+                        <li><a href="addExpense.html"><i class="icon-minus-circle"></i><span class="menuOption"> DODAJ WYDATEK</span></a></li>
+                        <li><a href="balance.html"><i class="icon-signal"></i><span class="menuOption"> PRZEGLĄDAJ BILANS</span></a></li>
+                        <li><a href="settings.html"><i class="icon-cog"></i><span class="menuOption"> USTAWIENIA</span></a></li>
+                        <li><a href="logout.html"><i class="icon-export"></i><span class="menuOption"> WYLOGUJ SIĘ</span></a></li>
                     </ul>
-                </div>
-            </nav>
-        </header>
-        <main>
-            <div class="transaction-form">
-            <form>
-                <div class="form-label">
-                    <label>Podaj wysokość przychodu:</label>
-                </div>
-                <div class="form-input">    
-                    <input type="number" id="moneyAmount">
-                </div>
-                <div class="form-label">
-                    <label>Podaj datę uzyskania przychodu:</label>
-                </div>
-                <div class="form-input">
-                    <input id= "transactionDate" type="date" value="todaysDate">
-                </div>
-                <div class="form-label">
-                    <label for="transactionCategory">Wybierz z listy rodzaj przychodu:</label>
-                </div>
-                <div class="form-input">
-                    <select id="transactionCategory">
-                        <option>Wynagrodzenie</option>    
-                        <option>Odsetki bankowe</option>    
-                        <option>Sprzedaż</option>    
-                        <option>Inne</option>    
-                    </select>
-                </div>
-                <div class="form-label">
-                    <label>Dodaj komentarz (opcjonalne):</label>
-                </div>
-                <div class="form-input">
-                    <textarea rows="4" id="comment"></textarea>
-                </div>
-                <input type="submit" value="Dodaj" class="button" onclick="getTransactionData()">
-                <button class="button" onclick="BudgetAppMain">Anuluj</button> 
-            </form>
+                </nav>
+            </header>
+            <main>
+                <div class="form-wrapper">
+                    <form class="input-form">
+                    <div class="form-label">
+                        <label>Podaj wysokość przychodu:</label>
+                    </div>
+                    <div class="form-input">    
+                        <input type="number" id="moneyAmount">
+                    </div>
+                    <div class="form-label">
+                        <label>Podaj datę uzyskania przychodu:</label>
+                    </div>
+                    <div class="form-input">
+                        <input id= "transactionDate" type="date" value="todaysDate">
+                    </div>
+                    <div class="form-label">
+                        <label for="transactionCategory">Wybierz z listy rodzaj przychodu:</label>
+                    </div>
+                    <div class="form-input">
+                        <select id="transactionCategory">
+                            <option>Wynagrodzenie</option>    
+                            <option>Odsetki bankowe</option>    
+                            <option>Sprzedaż</option>    
+                            <option>Inne</option>    
+                        </select>
+                    </div>
+                    <div class="form-label">
+                        <label>Dodaj komentarz (opcjonalnie):</label>
+                    </div>
+                    <div class="form-input">
+                        <textarea rows="4" id="comment"></textarea>
+                    </div>
+                    <div class="buttons-wrapper">
+                        <input id="button" type="submit" value="Dodaj"  onclick="getTransactionData()">
+                        <button class="button" onclick="BudgetAppMain">Anuluj</button> 
+                    </div>
+                </form>
             </div>
         </main>
+            <footer>&copy 2019, Sylwia Brant</footer>
+        </div>
         <script src="script.js"></script>
     </body>
-        <footer>&copy 2019, Sylwia Brant</footer>
 </html>

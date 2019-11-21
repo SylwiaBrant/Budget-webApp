@@ -6,61 +6,91 @@
         <title>Spełnij swoje marzenia</title>
         <meta name="description" content="Zbuduj oszczędności życia z pomocą tej aplikacji."/>
         <meta name ="keywords" content="oszczędności, oszczędzanie, bilans przychodów i wydatków"/>
-        <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto&display=swap&subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald:500|Roboto+Condensed&display=swap&subset=latin-ext" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="fontello/css/menu.css">
     </head>
     <body>
-        <header>
-            <nav>
-                <div class="main-nav">
-                    <h1>BudgetApp</h1>
-                    <ul class = "menu">
-                        <li><a href="addIncome.html"><span class="menuOption">DODAJ PRZYCHÓD</span></a></li>
-                        <li><a href="addExpense.html"><span class="menuOption">DODAJ WYDATEK</span></a></li>
-                        <li><a href="balance.html"><span class="menuOption">PRZEGLĄDAJ BILANS</span></a></li>
-                        <li><a href="settings.html"><span class="menuOption">USTAWIENIA</span></a></li>
-                        <li><a href="logout.html"><span class="menuOption">WYLOGUJ SIĘ</span></a></li>
+         <div class="container">
+            <header>
+                <nav>
+                    <div class = "nav-wrapper">
+                        <h1>BudgetApp</h1>
+                        <button id="menu-dropdown-btn"><i class="icon-menu"></i></button>
+                    </div>
+                    <ul id="main-menu" class="closed">
+                        <li><a href="addIncome.html"><i class="icon-plus-circle"></i><span class="menuOption"> DODAJ PRZYCHÓD</span></a></li>
+                        <li><a href="addExpense.html"><i class="icon-minus-circle"></i><span class="menuOption"> DODAJ WYDATEK</span></a></li>
+                        <li><a href="balance.html"><i class="icon-signal"></i><span class="menuOption"> PRZEGLĄDAJ BILANS</span></a></li>
+                        <li><a href="settings.html"><i class="icon-cog"></i><span class="menuOption"> USTAWIENIA</span></a></li>
+                        <li><a href="logout.html"><i class="icon-export"></i><span class="menuOption"> WYLOGUJ SIĘ</span></a></li>
                     </ul>
-                </div>
-            </nav>
-        </header>
+                </nav>
+            </header>
         <main>
-            <form class="transaction-input-form">
-                    <label>Kwota:<input type="number" for="income"></label>
-                    <label>Data:<input type="date" for="income" placeholder="2019-11-14"></label>
-                    <label for="pay-method">Sposób płatności:</label>
-                    <select id="pay-method">
-                        <option>Gotówka</option>    
-                        <option>Karta debetowa</option>    
-                        <option>Karta kredytowa</option>       
-                    </select>
-                    <label for="category">Kategoria:</label>
-                    <select id="category">
-                        <option>Jedzenie</option>
-                        <option>Mieszkanie</option>
-                        <option>Transport</option>
-                        <option>Telekomunikacja</option>
-                        <option>Opieka zdrowotna</option>
-                        <option>Ubranie</option>
-                        <option>Higiena</option>
-                        <option>Dzieci</option>
-                        <option>Rozrywka</option>
-                        <option>Wycieczka</option>
-                        <option>Szkolenia</option>
-                        <option>Książki</option>
-                        <option>Oszczędności</option>
-                        <option>Emerytura</option>
-                        <option>Spłata długów</option>
-                        <option>Darowizna</option>
-                        <option>Inne wydatki</option>    
-                    </select>
-                    <label>Komentarz:<input type="text" for="income"></label>
-                    Komentarz (opcjonalnie):
-                    [Dodaj] [Anuluj]           
-            </form>
+            <div class="form-wrapper">
+                <form class="input-form">
+                    <div class="form-label">
+                        <label>Podaj wysokość wydatku:</label>
+                    </div>
+                    <div class="form-input">
+                        <input type="number" for="income">
+                    </div>
+                    <div class="form-label">
+                        <label>Podaj datę uzyskania przychodu:</label>
+                    </div>
+                    <div class="form-input">
+                        <input type="date" for="income" placeholder="2019-11-14">
+                    </div>
+                    <div class="form-label">
+                        <label for="pay-method">Wybierz sposób płatności:</label>
+                    </div>
+                    <div class="form-input">
+                        <select id="pay-method">
+                            <option>Gotówka</option>    
+                            <option>Karta debetowa</option>    
+                            <option>Karta kredytowa</option>       
+                        </select>
+                    </div>
+                    <div class="form-label">
+                        <label for="category">Kategoria:</label>
+                    </div>
+                    <div class="form-input">
+                        <select id="category">
+                            <option>Jedzenie</option>
+                            <option>Mieszkanie</option>
+                            <option>Transport</option>
+                            <option>Telekomunikacja</option>
+                            <option>Opieka zdrowotna</option>
+                            <option>Ubranie</option>
+                            <option>Higiena</option>
+                            <option>Dzieci</option>
+                            <option>Rozrywka</option>
+                            <option>Wycieczka</option>
+                            <option>Szkolenia</option>
+                            <option>Książki</option>
+                            <option>Oszczędności</option>
+                            <option>Emerytura</option>
+                            <option>Spłata długów</option>
+                            <option>Darowizna</option>
+                            <option>Inne wydatki</option>    
+                        </select>
+                    </div>
+                    <div class="form-label">
+                        <label>Dodaj komentarz (opcjonalne):</label>
+                    </div>
+                    <div class="form-input">
+                            <input type="text" for="income">
+                    </div>
+                        <div class="buttons-wrapper">
+                        <input type="submit" value="Dodaj" class="button" onclick="getTransactionData()">
+                        <button class="button" onclick="BudgetAppMain">Anuluj</button>  
+                    </div>
+                </form>
+            </div>
         </main>
+            <footer>&copy 2019, Sylwia Brant</footer>
+        </div>
+        <script src="script.js"></script>
     </body>
-    <script>
-    
-    </script>
 </html>
