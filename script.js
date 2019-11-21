@@ -1,3 +1,14 @@
+function toggleMenu()
+{
+    document.getElementById('main-menu').classList.toggle("closed");
+}
+
+var x = document.getElementById('menu-dropdown-btn');
+x.onclick = toggleMenu;
+
+
+
+/*
 Date.prototype.toDateInputValue = (function(){
     var local = new Date(this);
     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
@@ -13,3 +24,18 @@ function getTransactionData()
     var tComment = document.getElementById("moneyAmount").value;
     
 }
+
+$(document).ready(function getUserData() 
+{
+    $(".register-form").submit( function ( event ) 
+    {
+    // store a reference to required form elements
+        var $required = $(".required");
+        var $requiredMessage = $(".required-messgage");
+        var $firstname = $("#firstname");
+        var $lastname = $("#lastname");
+        var $email = $("#email");
+        var $password = $("#password");
+  }); // close the submit event
+}); // close ready event 
+*/

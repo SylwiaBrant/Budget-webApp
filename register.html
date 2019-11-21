@@ -10,9 +10,15 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class = "login-form">
+        <header>
+            <div class = "nav-wrapper">
+                <h1>BudgetApp</h1>
+            </div>
+        </header>
+        <main>
+        <div class="form-wrapper">
             <h2>Zarejestruj się</h2>
-            <form class="form">
+            <form class="input-form">
                 <div class="form-label">
                     <label>Podaj imię:</label>
                 </div>
@@ -37,9 +43,13 @@
                 <div class="form-input">
                     <input id= "password" type="password">
                 </div>
+                <div class="buttons-wrapper">
+                    <input type="submit" value="Dołącz" class="button" onclick="getRegisterData()">
+                </div>
             </form>
         </div>
+        </main>
+        <footer>&copy 2019, Sylwia Brant</footer>
     </body>
-    <footer>&copy 2019, Sylwia Brant</footer>
     <script src="script.js"></script>
 </html>
