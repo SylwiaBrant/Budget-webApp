@@ -1,6 +1,8 @@
 *{
     margin: 0;
     padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 /* ---------------------------------------------------
                       GLOBAL STYLES
@@ -13,7 +15,7 @@ body
     height: 100vh;
     background-color: silver;
     font-family: 'Roboto Condensed', 'Oswald', Verdana;
-    font-size: 18px;
+    font-size: 19px;
     background-color: RGB(230,230,230);
     color: #3c3c3c; 
 
@@ -22,7 +24,6 @@ body
 .container
 {
     width: 100%;
-    height: 100vh;
 }
     
 /*------------------------------------------------------
@@ -34,31 +35,30 @@ body
     background-image: linear-gradient(to bottom, #19334d, #862d59);
     position: relative;
     display: inline-block;
-    top: 0;
-    height: 160px;
+    top: 40%;
+    height: 3.4rem;
     width: 100%;
     border-bottom:; 
 }
 
 h1
 {
-    padding: 3% 5% 4% 7%;
+    padding: 1% 5% 2% 7%;
     color: darkgray;
     float: left; 
     color: RGB(230,230,230);
     font-family: 'Oswald';
-    font-size: 4rem;
 }
 
 h2
 {
     text-align: center;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 nav ul
 {
-    top: 158px;
+    top: 3.4rem;
     display: inline-block;
     width: 54%;
     position: absolute;
@@ -80,7 +80,7 @@ nav ul li
 
 ul li a {
     text-decoration: none;
-    font-size: 2.8rem;
+    font-size: 1rem;
     padding: 0.6rem 2%;
     color: RGB(230,230,230);
 }
@@ -95,12 +95,10 @@ ul li:active{
 
 #menu-dropdown-btn {
     position: fixed;
-    right: 60px;
-    top: 40px;
-    width: 80px;
-    height: 80px;
+    right: 1.5rem;
+    top: 0.7rem;
     float: right;
-    font-size: 4rem;
+    font-size: 2rem;
     color: RGB(230,230,230);
     background-color: transparent;
     border: none;
@@ -113,112 +111,172 @@ nav ul.closed {
     display: none;
 }
 
-@media screen and (min-width: 800px)
+@media only screen and (min-width: 800px)
 {
-    .nav-wrapper {
-        height: 100%;
-    }
-    
-    h1 {
-        padding: 0 5% 0.5% 7%;
-        font-size: 2rem;
-    }
-    
-    nav ul.closed {
-        display: inline-block;
-    }
-    
+
     #menu-dropdown-btn {
         display: none;
     }
     
+    nav ul.closed {
+    display: inline-block;
+    }
     
-    ul li
-    {
+    .nav-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 10%;
+    border-bottom:; 
+    }
+    
+    nav {
+        background-image: linear-gradient(to bottom, #19334d, #862d59);
+    }
+    
+    nav ul {
+        top: 0;
+        position: relative;
+        float: right;
+        width: 90%;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    
+    nav ul li {
+
         float: left;
-        width: 10%;
+        width: 9em;
+        border: none;
+        border-right: solid 1px rgba(0,0,0, 0.3);
+        padding: 0.8em 0.2em;
+        text-align: center;  
     }
 
     ul li a{
-        border: none;
-        border-right: solid 1px rgba(0,0,0, 0.3);
+        font-size: 0.8em;
     } 
     
-    ul li a {
-    font-size: 2.8rem;
-    padding: 0.6rem 2%;
-    }
 }
-
+    
 /* ---------------------------------------------------
                 GLOBAL FORM STYLES
 ----------------------------------------------------*/
 
-.form-wrapper
-{
+.form-wrapper {
+    display: inline-block;
     margin: 0 auto;
+
 }
 
-.input-form
-{
+.input-form {
     clear: both;
     margin: 0 auto;
-    padding: 50px 15%; 
+
+
 }
 
-.form-label
-{
-    margin: 40px 0 0 0;
-    padding: 10px;
-    font-size: 3.2rem;
+.form-label {
+    margin: 1em 0 0 0;
+    padding: 0.5em;
     font-family: 'Roboto Condensed';
 
 }
 
-.form-input input, .form-input select, .form-input textarea
-{
+.form-input input, .form-input select, .form-input textarea {
     width: 100%;
-    height: 100px;
+    height: 2em;
+    border: none;
     box-sizing: border-box;
-    padding: 10px 30px;
+    padding: 0 30px;
     font-family: 'Roboto Condensed';
-    font-size: 3rem;
+    font-size: 1.2em;
     color: #3c3c3c;
-    border-color: cornflowerblue;
-    border-radius: 10px; 
+ /   border-radius: 5px; 
 }
 
-select option
-{
-    font-size: 14px;
+select option {
+    font-size: 0.8em;
     max-width: 20px;
 }
-.form-input textarea 
-{
-    height: 300px;
-    padding: 5px 10px; 
-    border-radius: 5px; 
+
+.form-input textarea {
+    height: 6em;
+    padding: 5px 2px; 
+   / border-radius: 5px; 
     background-color: #RBG(236,236,236);
 }
 
-.form input:focus, .form textarea:focus
-{
+.form-input input:focus, .form-input select:focus, .form-input textarea:focus {
     outline: none;
-    border: 5px solid darkgrey;
+    border-bottom: 2px solid #19334d;
 }
 
+@media only screen and (min-width: 800px)
+{
+
+    h2 {
+        font-size: 1.2em;
+        color: #862d59;
+    }
+    
+    .side-image {
+        float: left;
+        border: 2px solid #862d59;
+        height: 480px;
+    }
+    
+    form {
+        display: inline-block;
+        padding: 1em 2.6em 0 2.6em;
+        box-sizing: border-box;
+        height: 25.5em;
+        
+    }
+    
+    .form-wrapper {
+        width: 38em;
+
+        padding: 0;
+        margin: 1.5em auto;
+        box-shadow: 5px 10px 10px grey; 
+        display: block;
+    }
+    
+    .form-input input, .form-input select, .form-input textarea {
+        width: 100%;
+        height: 1.5em;
+        box-sizing: border-box;
+        padding: 0 2em;
+        font-size: 1em;
+    }
+    
+    select option {
+        font-size: 1em;
+        max-width: 20px;
+    }
+    
+    .form-label {
+        margin: 0.5em 0 0 0;
+        padding: 0.2em;
+    }
+    .form-input textarea {
+        height: 5em;
+        padding: 5px 2px; 
+    }
+
+}
 /* ---------------------------------------------------
                 GLOBAL BUTTONS STYLES
 ----------------------------------------------------*/
 .button, form [type=submit]
 {
-    margin: 0 30px 0 30px;
+    margin: 0 10px 0 10px;
     text-decoration: none;
     font-family: 'Roboto Condensed';
-    font-size: 3rem;
+    font-size: 1rem;
     color: RGB(230,230,230);
     width: 40%;
-    height: 2.5em;
+    height: 2.4em;
     padding: 5px 20px;
     border: none;
     border-radius: 8px;
@@ -235,7 +293,7 @@ form.input-form .buttons-wrapper .button:hover, form.input-form form [type=submi
 
 .buttons-wrapper
 {
-    padding: 40px 0 0 0;
+    padding: 20px 0 0 0;
     text-align: center;
 }
 
@@ -247,7 +305,7 @@ footer
 {
     padding: 10px 0;
     font-family: 'Roboto Condensed';
-    font-size: 2rem;
+    font-size: 0.8rem;
     text-align: center;
     text-transform: uppercase;
 }
