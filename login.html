@@ -6,18 +6,17 @@
         <title>Spełnij swoje marzenia</title>
         <meta name="description" content="Zbuduj oszczędności życia z pomocą tej aplikacji."/>
         <meta name ="keywords" content="oszczędności, oszczędzanie, bilans przychodów i wydatków"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Oswald:500|Roboto+Condensed&display=swap&subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="fontello/css/menu.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header>
-            <div class = "nav-wrapper">
-                <h1>BudgetApp</h1>
-            </div>
-        </header>
-        <div class = "form-wrapper">
-            <h2>Zaloguj się</h2>
-            <form class="input-form">
+        <div class="form-wrapper sign-page">
+            <div class="image sign-page"></div>
+            <form class="input-form sign-page">
+                <h2>Zaloguj się</h2>
+                <p>Nie masz konta? <a href="/register.html">Zarejestruj się</a>.</p>
                 <div class="form-label">
                     <label>Podaj email:</label>
                 </div>
@@ -31,7 +30,7 @@
                     <input id= "password" type="password">
                 </div>
                 <div class="buttons-wrapper">
-                    <input type="submit" value="Dołącz" class="button" onclick="getRegisterData()">
+                    <input type="submit" value="Zaloguj się" class="button sign-page" onclick="getRegisterData()">
                 </div>
             </form>
         </div>
