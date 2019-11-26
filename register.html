@@ -6,23 +6,15 @@
         <title>Spełnij swoje marzenia</title>
         <meta name="description" content="Zbuduj oszczędności życia z pomocą tej aplikacji."/>
         <meta name ="keywords" content="oszczędności, oszczędzanie, bilans przychodów i wydatków"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Oswald:500|Roboto+Condensed&display=swap&subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="fontello/css/menu.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header>
-            <div class = "nav-wrapper">
-                <nav>
-                    <h1>BudgetApp</h1>
-                </nav>
-            </div>
-        </header>
-        <main>
-        <div class="container">
-            <div class="side-image"><img src="img/moneyjar1.jpeg">
-            </div>
-            <div class="form-wrapper">
-            <form class="input-form">
+        <div class="form-wrapper sign-page">
+            <div class="image sign-page"></div>
+            <form class="input-form sign-page">
                 <h2>Zarejestruj się</h2>
                 <div class="form-label">
                     <label>Podaj imię:</label>
@@ -49,12 +41,10 @@
                     <input id= "password" type="password">
                 </div>
                 <div class="buttons-wrapper">
-                    <input type="submit" value="Dołącz" class="button" onclick="getRegisterData()">
+                    <input type="submit" value="Dołącz" class="button sign-page" onclick="getRegisterData()">
                 </div>
             </form>
         </div>
-        </div>
-        </main>
         <footer>&copy 2019, Sylwia Brant</footer>
     </body>
     <script src="script.js"></script>
