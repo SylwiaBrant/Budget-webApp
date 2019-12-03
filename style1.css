@@ -1,0 +1,83 @@
+.footerArea{
+    color: rgb(230,230,230);
+}
+
+body{
+    color: rgb(52, 58, 64);
+    background-image: url("img/writing-sationary.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container.mainPage{
+    background-color: rgb(250,250,250,0.7);
+    padding-top: 4.5em;
+}
+
+a.navbar-brand.logo{
+    font-family: 'Oswald';
+    color: rgb(230,230,230);
+}
+
+a.navbar-brand.logo:hover{
+    font-family: 'Oswald';
+    color: rgb(230,230,230,0.5);
+}
+
+.btn:focus,.btn:active:focus,.btn.active:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-secondary.active:focus, .btn-secondary:active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.btnSpecified{
+    background-color: rgb(116, 150, 180);
+    border: none;
+    border-radius: 10px;
+    min-width: 100px;
+}
+
+.btnSpecified:hover{
+    color: RGB(230,230,230,.8);
+}
+
+img.icon{
+    height:100px;
+}
+
+.navbar-btn:hover{
+    color: rgba(255,255,255,.8);
+}
+
+.transactionsBtn{
+    border: 2px solid #343a40;
+    background-color: white;
+    cursor: pointer;
+}
+
+.transactionsBtn:hover{
+    background-color: rgb(172, 193, 211);
+}
+
+h2{
+    font-size: 1.2em;
+}
+
+.quote{
+    padding: 1em;
+    text-align: justify;
+    font-style: italic;
+}
+
+.quoteAuthor{
+    text-align: end;
+}
+
+.inputSlot{
+    margin: 0 auto;
+    width: 80%;
+}
