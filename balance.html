@@ -17,7 +17,7 @@
         <header>  
             <div class="container-fluid">
                 <nav class="navbar bg-dark navbar-dark fixed-top">
-                    <a class="navbar-brand logo" alt="Logo">BudgetApp</a>
+                    <a class="navbar-brand logo">BudgetApp</a>
                     <div>
                         <button class="btn btn-secondary btnSpecified" type="button" onclick="showModal('#loginModal')">Zaloguj się</button>
                         <div class="btn-group">
@@ -35,16 +35,16 @@
                 <!-- Cards -->
                 <div class="d-flex flex-row justify-content-around text-center mx-2 flex-wrap">
                     <div class="col transactionsBtn p-3 m-2" onclick="showModal('#incomeModal')">
-                        <img src="img/profits.png" class="d-block mx-auto mb-3 icon">
+                        <img src="img/profits.png" class="d-block mx-auto mb-3 icon" alt="profits icon">
                         <h2>DODAJ PRZYCHÓD</h2>
                     </div>
                     <div class="col transactionsBtn p-3 m-2"
                     onclick="showModal('#expenseModal')">
-                        <img src="img/pay.png" class="d-block mx-auto mb-3 icon">
+                        <img src="img/pay.png" class="d-block mx-auto mb-3 icon" alt="two hands paying">
                         <h2>DODAJ WYDATEK</h2>
                     </div>
                     <div class="col transactionsBtn p-3 m-2">
-                        <img src="img/analysis.png" class="d-block mx-auto mb-3 icon">
+                        <img src="img/analysis.png" class="d-block mx-auto mb-3 icon" alt="magnifying glass on charts">
                         <h2>PRZEGLĄDAJ BILANS</h2>
                     </div>
                 </div>
@@ -78,14 +78,14 @@
                <form class="needs-validation">
                     <div class="form-group">
                         <div class="py-4">
-                            <input class="form-control inputSlot" id="userEmail" type="email" placeholder="Wpisz email">
+                            <input class="form-control inputSlot" id="userInputEmail" type="email" placeholder="Wpisz email">
                             <div class="invalid-feedback">To pole musi być wypełnione.</div>
                         </div>
-                        </div>
-                        <div class="pb-4">
-                            <input class="form-control inputSlot" id="password" type="password" placeholder="Wpisz hasło">
-                            <div class="invalid-feedback">To pole musi być wypełnione.</div>
-                        </div>  
+                    </div>
+                    <div class="pb-4">
+                        <input class="form-control inputSlot" id="userInputPassword" type="password" placeholder="Wpisz hasło">
+                        <div class="invalid-feedback">To pole musi być wypełnione.</div>
+                    </div>  
                 </form>
             </div>
             <!-- Modal footer -->
@@ -150,15 +150,15 @@
                     <form>
                         <div class="form-group">
                             <label>Podaj wysokość przychodu:</label>
-                            <input class="form-control" type="number" id="moneyAmount">
+                            <input class="form-control" type="number" id="incomeAmount">
                         </div>
                         <div class="form-group">
                             <label>Podaj datę uzyskania przychodu:</label>
-                            <input class="form-control" id= "transactionDate" type="date" value="todaysDate">
+                            <input class="form-control" id= "incomeDate" type="date" value="todaysDate">
                         </div>
                         <div class="form-group">
                             <label for="transactionCategory">Wybierz z listy rodzaj przychodu:</label>
-                            <select class="form-control" id="transactionCategory">
+                            <select class="form-control" id="incomeCategory">
                                 <option>Wynagrodzenie</option>    
                                 <option>Odsetki bankowe</option>    
                                 <option>Sprzedaż</option>    
@@ -167,7 +167,7 @@
                         </div>
                         <div class="form-group">
                             <label>Dodaj komentarz (opcjonalnie):</label>
-                            <textarea class="form-control" rows="4" id="comment"></textarea>
+                            <textarea class="form-control" rows="4" id="incomeCmment"></textarea>
                         </div>
                     </form>
                     </div>
@@ -193,11 +193,11 @@
                         <form>
                             <div class="form-group">
                                 <label>Podaj wysokość wydatku:</label>
-                                <input class="form-control" type="number">
+                                <input class="form-control" id="expenseAMount" type="number">
                             </div>
                             <div class="form-group">
                                 <label>Podaj datę uzyskania przychodu:</label>
-                                <input class="form-control" id= "transactionDate" type="date" value="todaysDate">
+                                <input class="form-control" id= "expenseDate" type="date" value="todaysDate">
                             </div>
                             <div class="form-group">
                                 <label for="pay-method">Wybierz sposób płatności:</label>
@@ -209,7 +209,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="category">Kategoria:</label>
-                                <select class="form-control" id="category">
+                                <select class="form-control" id="expenseCategory">
                                     <option>Jedzenie</option>
                                     <option>Mieszkanie</option>
                                     <option>Transport</option>
@@ -231,7 +231,7 @@
                          </div>
                          <div class="form-group">
                             <label>Dodaj komentarz (opcjonalnie):</label>
-                            <textarea class="form-control" rows="3" id="comment"></textarea>
+                            <textarea class="form-control" rows="3" id="expenseComment"></textarea>
                           </div>
                       </form>
                   </div>

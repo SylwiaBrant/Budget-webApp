@@ -41,10 +41,6 @@ a.navbar-brand.logo:hover{
     min-width: 100px;
 }
 
-.btnSpecified:hover{
-    color: RGB(230,230,230,.8);
-}
-
 img.icon{
     height:100px;
 }

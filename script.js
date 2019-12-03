@@ -1,31 +1,13 @@
-/*//SIGN IN/UP FORMS VALIDATION
-(function() 
- {
-  'use strict';
-    window.addEventListener('load', function() 
-    {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function(form) 
-        {
-            form.addEventListener('submit', function(event) 
-            {
-                if (form.checkValidity() === false) 
-                {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();*/
-
+function getTodaysDate{
+    var todaysDate = new Date(); 
+    var day = todaysDate.getDate();
+    var month = todaysDate.getMonth()+1;
+    var year = todaysDate.getFullYear();
+}
 function showModal(modalName){
     $(modalName).modal('toggle');
   }
 
-
-/*
 
 function getTransactionData()
 {
@@ -35,4 +17,3 @@ function getTransactionData()
     var tComment = document.getElementById("moneyAmount").value;
     
 }
-*/
