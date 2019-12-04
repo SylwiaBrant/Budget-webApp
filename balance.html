@@ -17,7 +17,7 @@
         <header>  
             <div class="container-fluid">
                 <nav class="navbar bg-dark navbar-dark fixed-top">
-                    <a class="navbar-brand logo">BudgetApp</a>
+                    <a class="navbar-brand logo" href="index.html">BudgetApp</a>
                     <div>
                         <button class="btn btn-secondary btnSpecified" type="button" onclick="showModal('#loginModal')">Zaloguj się</button>
                         <div class="btn-group">
@@ -33,7 +33,7 @@
         </header>
             <div class="container mainPage">
                 <!-- Cards -->
-                <div class="d-flex flex-row justify-content-around text-center mx-2 flex-wrap">
+                <div class="row justify-content-around text-center mx-2 flex-wrap">
                     <div class="col transactionsBtn p-3 m-2" onclick="showModal('#incomeModal')">
                         <img src="img/profits.png" class="d-block mx-auto mb-3 icon" alt="profits icon">
                         <h2>DODAJ PRZYCHÓD</h2>
@@ -47,6 +47,92 @@
                         <img src="img/analysis.png" class="d-block mx-auto mb-3 icon" alt="magnifying glass on charts">
                         <h2>PRZEGLĄDAJ BILANS</h2>
                     </div>
+                </div>
+                <div class="row justify-content-around my-4">
+                    <button class="btn btn-secondary btnSpecified" id="currentMonthTableBtn">Bilans z bieżącego miesiąca</button>
+                    <button class="btn btn-secondary btnSpecified"  id="previousMonthTableBtn">Bilans z poprzedniego miesiąca</button>
+                    <button class="btn btn-secondary btnSpecified"  id="chosenPeriodTableBtn">Bilans z wybranego okresu</button>
+                </div>
+                <div class="text-center my-2">
+                    <h3>PRZYCHODY</h3>
+                </div>
+                <div id="incomesTable">
+                    <table class="table table-striped" id="incomesTable">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Kwota</th>
+                          <th scope="col">Data</th>
+                          <th scope="col">Kategoria</th>
+                          <th scope="col">Komentarz</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Suma</th>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <div class="text-center my-2">
+                    <h3>WYDATKI</h3>
+                </div>
+                <div>
+                    <table class="table table-striped" id="expensesTable">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Kwota</th>
+                          <th scope="col">Data</th>
+                          <th scope="col">Kategoria</th>
+                          <th scope="col">Sposób płatności</th>
+                          <th scope="col">Komentarz</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Suma</th>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
                 </div>
                 <div class="quote">
                     <p>„Skoro pracujesz na swoje pieniądze co najmniej czterdzieści godzin tygodniowo, to skrajną nieodpowiedzialnością jest niepoświęcanie im uwagi.”</p><p class="quoteAuthor">~Suze Orman</p>
@@ -154,7 +240,7 @@
                         </div>
                         <div class="form-group">
                             <label>Podaj datę uzyskania przychodu:</label>
-                            <input class="form-control" id= "incomeDate" type="date" value="todaysDate">
+                            <input class="form-control" id= "incomeDate" type="incomeDate">
                         </div>
                         <div class="form-group">
                             <label for="transactionCategory">Wybierz z listy rodzaj przychodu:</label>
@@ -167,13 +253,13 @@
                         </div>
                         <div class="form-group">
                             <label>Dodaj komentarz (opcjonalnie):</label>
-                            <textarea class="form-control" rows="4" id="incomeCmment"></textarea>
+                            <textarea class="form-control" rows="4" id="incomeComment"></textarea>
                         </div>
                     </form>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer justify-content-center py-4">
-                        <button type="submit" class="btn btn-secondary btnSpecified mr-3" onclick="getTransactionData()">Dodaj</button>
+                        <button type="submit" class="btn btn-secondary btnSpecified mr-3" onclick="getIncomeData()">Dodaj</button>
                         <button type="button" class="btn btn-secondary btnSpecified ml-3" data-dismiss="modal">Anuluj</button>
                     </div>
                 </div>

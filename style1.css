@@ -45,6 +45,16 @@ img.icon{
     height:100px;
 }
 
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    text-decoration: none;
+    color: inherit;
+}
+
 .navbar-btn:hover{
     color: rgba(255,255,255,.8);
 }

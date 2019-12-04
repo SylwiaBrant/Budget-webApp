@@ -17,7 +17,7 @@
         <header>  
             <div class="container-fluid">
                 <nav class="navbar bg-dark navbar-dark fixed-top">
-                    <a class="navbar-brand logo">BudgetApp</a>
+                    <a class="navbar-brand logo" href="index.html">BudgetApp</a>
                     <div>
                         <button class="btn btn-secondary btnSpecified" type="button" onclick="showModal('#loginModal')">Zaloguj się</button>
                         <div class="btn-group">
@@ -44,8 +44,9 @@
                         <h2>DODAJ WYDATEK</h2>
                     </div>
                     <div class="col transactionsBtn p-3 m-2">
+                        <a href="balance.html">
                         <img src="img/analysis.png" class="d-block mx-auto mb-3 icon" alt="magnifying glass on charts">
-                        <h2>PRZEGLĄDAJ BILANS</h2>
+                        <h2>PRZEGLĄDAJ BILANS</h2></a>
                     </div>
                 </div>
                 <div class="quote">
@@ -167,13 +168,13 @@
                         </div>
                         <div class="form-group">
                             <label>Dodaj komentarz (opcjonalnie):</label>
-                            <textarea class="form-control" rows="4" id="incomeCmment"></textarea>
+                            <textarea class="form-control" rows="4" id="incomeComment"></textarea>
                         </div>
                     </form>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer justify-content-center py-4">
-                        <button type="submit" class="btn btn-secondary btnSpecified mr-3" onclick="getTransactionData()">Dodaj</button>
+                        <button type="submit" class="btn btn-secondary btnSpecified mr-3" onclick="getIncomeData()">Dodaj</button>
                         <button type="button" class="btn btn-secondary btnSpecified ml-3" data-dismiss="modal">Anuluj</button>
                     </div>
                 </div>
@@ -197,7 +198,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Podaj datę uzyskania przychodu:</label>
-                                <input class="form-control" id= "expenseDate" type="date" value="todaysDate">
+                                <input class="form-control" id= "expenseDate" type="date">
                             </div>
                             <div class="form-group">
                                 <label for="pay-method">Wybierz sposób płatności:</label>
