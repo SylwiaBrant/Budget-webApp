@@ -5,18 +5,6 @@
         header('Location: index.php');
         exit();
     }
-    require_once "config.inc.php";
-    $db_connection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
-    if($db_connection->connect_errno != 0){
-        echo "Error: ".$db_connection->connect_errno;
-    }
-    else{
-        $sql_show_incomes = sprintf("SELECT i.date, i.money, it.name, i.comment FROM incomes AS i INNER JOIN income_types AS it WHERE i.user_id='14' AND i.user_id = it.user_id",
-            $db_connection->real_escape_string($_SESSION['loggedInUserId'])); 
-            if($result =$db_connection->query($sql_show_incomes)){
-        }
-        $db_connection->close();
-    }
 
 ?>
 
@@ -50,19 +38,34 @@
 </thead>
 <tbody>
     <?php 
-    $recordNumber=1;
-    while($row = mysqli_fetch_array($result))
-    {
 
-    echo "<tr>";
-    echo "<th scope='row'>$recordNumber</th>";
-    echo "<td>" . $row['money'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['name'] . "</td>";
-    echo "<td>" . $row['comment'] . "</td>";
-    echo "</tr>";
-    $recordNumber++;
+    require_once "config.inc.php";
+    $db_connection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
+    if($db_connection->connect_errno != 0){
+        echo "Error: ".$db_connection->connect_errno;
     }
+    else{
+        $user_id = $_SESSION['loggedInUserId'];
+        $sql_show_incomes = sprintf("SELECT i.date, i.money, ic.name, i.comment FROM incomes AS i INNER JOIN income_categories AS ic WHERE i.user_id='%s' AND i.user_id = ic.user_id AND i.income_type_id=ic.id",
+            $db_connection->real_escape_string($user_id)); 
+            if($result =$db_connection->query($sql_show_incomes)){
+                $recordNumber=1;
+                while($row = mysqli_fetch_array($result))
+                {
+                    echo "<tr>";
+                    echo "<th scope='row'>$recordNumber</th>";
+                    echo "<td>" . $row['money'] . "</td>";
+                    echo "<td>" . $row['date'] . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['comment'] . "</td>";
+                    echo "</tr>";
+                $recordNumber++;
+                }
+            }
+            $db_connection->close();
+        }
+    
+    
     ?>
     </tbody>
     </table>

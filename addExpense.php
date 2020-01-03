@@ -29,7 +29,7 @@
             $date = $_POST['date'];
         }
         if(isset($_POST['paymentMethod'])){
-            $category = $_POST['category'];
+            $paymentMethod = $_POST['paymentMethod'];
         }
         if(isset($_POST['category'])){
             $category = $_POST['category'];
@@ -53,14 +53,15 @@
                 if($ok){    
                     $user_id = $_SESSION['loggedInUserId'];
 
-                    $sql_add_income = sprintf(
+                    $sql_add_expense = sprintf(
                         "INSERT INTO expenses VALUES ('', $user_id, $money, '$date', 
                         (SELECT id FROM payment_methods WHERE name='%s' AND user_id=$user_id), 
-                        (SELECT id FROM income_types WHERE name='%s' AND user_id=$user_id), '%s')",  
+                        (SELECT id FROM expense_categories WHERE name='%s' AND user_id=$user_id), '%s', '%s')",  
                             $db_connection->real_escape_string($paymentMethod),
                             $db_connection->real_escape_string($category),
-                            $db_connection->real_escape_string($comment));
-                    if($db_connection->query($sql_add_income)){
+                            $db_connection->real_escape_string($comment),
+                            $db_connection->real_escape_string('N'));
+                    if($db_connection->query($sql_add_expense)){
                         $_SESSION['recordAddedMsg'] = "<h1>Wpis dodany pomyślnie.</h1>";
                         header('Location: mainpage.php');
                     }

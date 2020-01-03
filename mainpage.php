@@ -83,7 +83,7 @@
                 <form action="addIncome.php" method="post">
                     <div class="form-group">
                         <label>Podaj wysokość przychodu:</label>
-                        <input class="form-control" type="number" name="money">
+                        <input class="form-control" type="number" min="0" step="0.01" name="money">
                         <?php
                                 if (isset($_SESSION['e_money'])){
                                     echo '<div class="error">'.$_SESSION['e_money'].'</div>';
@@ -173,15 +173,15 @@
                     <form action="addExpense.php" method="post">
                         <div class="form-group">
                             <label>Podaj wysokość wydatku:</label>
-                            <input class="form-control" id="expenseAMount" type="number" name='money'>
+                            <input class="form-control" type="number" min='0'step='0.01' name='money'>
                         </div>
                         <div class="form-group">
                             <label>Podaj datę uzyskania przychodu:</label>
-                            <input class="form-control" id= "expenseDate" type="date" name='date'>
+                            <input class="form-control" type="date" name='date'>
                         </div>
                         <div class="form-group">
                             <label >Wybierz sposób płatności:</label>
-                            <select class="form-control" id="pay-method" name='paymentMethod'>
+                            <select class="form-control" name='paymentMethod'>
                                 <?php 
                                     require_once "config.inc.php";
                                     mysqli_report(MYSQLI_REPORT_STRICT);

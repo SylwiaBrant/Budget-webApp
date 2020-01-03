@@ -51,10 +51,11 @@
                     $user_id = $_SESSION['loggedInUserId'];
 
                     $sql_add_income = sprintf(
-                        "INSERT INTO incomes VALUES ('', $user_id, $money, '$date', 
-                        (SELECT id FROM income_types WHERE name='$category' AND user_id=$user_id), '%s')",  
+                        "INSERT INTO incomes VALUES ('', $user_id, $money, '$date',
+                        (SELECT id FROM income_categories WHERE name='$category' AND user_id=$user_id), '%s', '%s')",  
                             $db_connection->real_escape_string($category),
-                            $db_connection->real_escape_string($comment));
+                            $db_connection->real_escape_string($comment),
+                            $db_connection->real_escape_string('N'));
                     if($db_connection->query($sql_add_income)){
                         echo "<h1>Wpis dodany pomyślnie.</h1>";
                         header('Location: mainpage.php');
