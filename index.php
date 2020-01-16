@@ -21,51 +21,74 @@
         <link rel="stylesheet" href="style1.css">
     </head>
     <body>
-        <div class="container mainPage align-items-center"> 
-            <div class="card mx-auto">
-                <!-- Card Header -->
-                <div class="card-header d-flex flex-row justify-content-around align-items-center">
-                    <h4 class="card-title">Zaloguj się</h4>
-                    <div>
-                        <p>Nie masz konta?</p>
-                        <button class="btn btn-secondary btnSpecified" data-dismiss="modal" onclick="location.href='register.php'">Zarejestruj się</button>
-                    </div>
-                </div>
-                    <!-- Card body -->
-                <div class="card-body mx-2">
-                    <form action="login.php" method="post">
-                        <div class="form-group">
-                            <div class="py-2">
-                                <label>Podaj login</label>
-                                <input class="form-control inputSlot" name="login" type="text" placeholder="Login">
+        <div class="container-fluid entryPage">
+                <div class="container entryPage align-items-center"> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column banner-wrapper justify-content-center text-center">     
+                                <img src="img/coiny.png" class="d-block mx-auto">
+                                <h1>Oszczędzaj razem z Coiny</h1>
+                                <div class="d-none d-md-block banner-text mt-4">
+                                    <p>Skorzystaj z możliwości jakie daje Coiny.</p> 
+                                    <p>Prowadź rejestr przychodów i wydatków.</p>
+                                    <p>Przeglądaj analizę budżetu w wygodnej formie.</p>
+                                    <p>Personalizuj kategorie.</p>
+                                    <p>Oszczędzaj i spełniaj swoje marzenia!</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="pb-4">
-                            <label>Podaj hasło:</label>
-                            <input class="form-control inputSlot" name="password" type="password" placeholder="Hasło">
-                            <div class="invalid-feedback">To pole musi być wypełnione.</div>
-                        </div> 
-                        <div class="d-flex justify-content-center">
-                            <input class="btn btn-secondary btnSpecified" type="submit" value="Zaloguj sie">
-                        </div> 
-                    </form>
+                        <div class="col-md-6">
+                            <div class="form-wrapper pt-5 mx-4 ml-md-0">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h1>Zaloguj się</h1>
+                                    <div>
+                                        <p>Nie masz konta?</p>
+                                        <a class="link" href="register.php">Zarejestruj się</a>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <form action="login.php" method="post">
+                                        <div class="form-group">
+                                            <div class="py-2">
+                                                <label>Podaj login</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><img src="img/114-user.png"></span>
+                                                    </div>
+                                                    <input class="form-control inputSlot" name="login" type="text" placeholder="Login" <?= isset($_SESSION['givenLogin']) ? 'value="'.$_SESSION['givenLogin'].'"' : '' ?>>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pb-4">
+                                            <label>Podaj hasło:</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><img src="img/144-lock.png"></span>
+                                                </div>
+                                                <input class="form-control inputSlot" name="password" type="password" placeholder="Hasło">
+                                            </div>
+                                            <div class="invalid-feedback">To pole musi być wypełnione.</div>
+                                        </div> 
+                                        <div class="d-flex justify-content-center mt-3">
+                                            <input class="mainBtn" type="submit" name="submit" value="Zaloguj sie">
+                                        </div> 
+                                    </form>
+                                </div>
+                                <div class="justify-content-center">
+                                    <?php
+                                    if(isset($_SESSION['credentialsError'])) echo $_SESSION['credentialsError'];
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            <div class="justify-content-center">
-                <?php
-                if(isset($_SESSION['credentialsError'])) echo $_SESSION['credentialsError'];
-                ?>
+            </div>  
         </div>
-    <footer>
-        <div class="row justify-content-center">
-            <p>&copy; Sylwia Brant, 2019</p>
-            <div>Icons made by<a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-            </div>
-        </div>
-    </footer>    
-    <!-- Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>

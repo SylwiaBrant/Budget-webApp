@@ -1,4 +1,7 @@
-//--------- PAGE LOOKS ---------//
-function showModal(modalName){
-    $(modalName).modal('toggle');
-  }
+$(document).ready(function () {
+
+  $('#navCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+  });
+
+});

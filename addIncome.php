@@ -1,11 +1,5 @@
-<?php 
-    session_start();
-
-    if(!isset($_SESSION['userLoggedIn'])) 
-    {
-        header('Location: index.php');
-        exit();
-    }
+<?php  
+    session_start();  
     $money = '';
     $date = '';
     $category = '';
@@ -39,39 +33,39 @@
             $comment = $_POST['comment'];
         }
         //send db request
-        require_once "config.inc.php";
-        mysqli_report(MYSQLI_REPORT_STRICT);
-        try{
-            $db_connection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
-            if($db_connection->connect_errno!=0){
-                throw new Exception(mysqli_connect_errno());
-            }
-            else{
-                if($ok){    
-                    $user_id = $_SESSION['loggedInUserId'];
+        require_once "database.php";
+        if($ok){  
+            try{  
+                $user_ID = $_SESSION['logged_id'];
+                $sql_add_income = $db->prepare(
+                "INSERT INTO incomes VALUES ('', :user_Id, :money, :date,
+                (SELECT id FROM income_categories WHERE name=:category AND user_id=:user_ID), :comment, :invoice_id)");  
+                $sql_add_income->bindValue(':user_Id', $user_ID, PDO::PARAM_INT);
+                echo $user_ID;
+                $sql_add_income->bindValue(':money', $money);
+                $sql_add_income->bindValue(':date', $date, PDO::PARAM_STR); 
+                echo $date;               
+                $sql_add_income->bindValue(':category', $category);
+                echo $category;
+                $sql_add_income->bindValue(':user_ID', $user_ID, PDO::PARAM_INT);
+                $sql_add_income->bindValue(':comment', $comment, PDO::PARAM_STR);
+                $sql_add_income->bindValue(':invoice_id', 'N', PDO::PARAM_STR);
+                $sql_add_income->execute();
+                $lastInsertId = $db->lastInsertId();
 
-                    $sql_add_income = sprintf(
-                        "INSERT INTO incomes VALUES ('', $user_id, $money, '$date',
-                        (SELECT id FROM income_categories WHERE name='$category' AND user_id=$user_id), '%s', '%s')",  
-                            $db_connection->real_escape_string($category),
-                            $db_connection->real_escape_string($comment),
-                            $db_connection->real_escape_string('N'));
-                    if($db_connection->query($sql_add_income)){
-                        echo "<h1>Wpis dodany pomyślnie.</h1>";
-                        header('Location: mainpage.php');
-                    }
-                    else{
-                        throw new Exception($db_connection->error);
-                    }
+                if($lastInsertId > 0){
+                    echo "<h1>Wpis dodany pomyślnie.</h1>";
+                    header('Location: mainpage.php');
                 }
-                $db_connection->close();
+                else{
+                    throw new Exception($db->error);
+                }
+                $db->close();
             }
-        }
-        catch(Exception $e){
-            echo "<h1>Błąd serwera. Przepraszamy za niedogodności.</h1>";
-            echo "Informacja developerska: ".$e;
-        }
-    }
-
+            catch(Exception $e){
+                echo "<h1>Błąd serwera. Przepraszamy za niedogodności.</h1>";
+                echo "Informacja developerska: ".$e;
+            }
+        }  
+    } 
 ?>
-
