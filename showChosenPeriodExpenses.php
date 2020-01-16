@@ -1,41 +1,46 @@
-<?php 
+<?php
     session_start();
 
-    if(!isset($_SESSION['logged_id'])) 
-    {
+    if(!isset($_SESSION['logged_id'])){
         header('Location: index.php');
         exit();
     }
-    //obtain user-assigned income and expense categories na payment methods 
-    //from database to populate select options
-    $today=date('d-m-Y');
-    require_once 'database.php';
-        $user_id = $_SESSION['logged_id'];
-        $sql_select_i_categories = $db->query(
-            "SELECT name FROM income_categories WHERE user_id=$user_id");
-        $income_options= $sql_select_i_categories->fetchAll(); 
-
-        $sql_select_e_categories = $db->query(
-            "SELECT name FROM expense_categories WHERE user_id=$user_id"); 
-        $expense_categories = $sql_select_e_categories->fetchAll();
-
-        $sql_select_payment_methods = $db->query(
-            "SELECT name FROM payment_methods WHERE user_id=$user_id");
-        $payment_methods = $sql_select_payment_methods->fetchAll();
-        
-        $sql_sum_incomes = $db->query("SELECT ROUND(SUM(money),2) as totalAmount FROM incomes 
-            WHERE user_id=$user_id AND date BETWEEN DATE_SUB(CURDATE(),INTERVAL (DAY(CURDATE())-1) DAY) 
-            AND LAST_DAY(NOW())");
-         $row1=$sql_sum_incomes->fetch();
-         $incomesSum = $row1['totalAmount'];
-
-        $sql_sum_expenses = $db->query("SELECT ROUND(SUM(money),2) as totalAmount FROM expenses 
-            WHERE user_id=$user_id AND date BETWEEN DATE_SUB(CURDATE(), INTERVAL (DAY(CURDATE())-1) DAY) 
-            AND LAST_DAY(NOW())");
-        $row2=$sql_sum_expenses->fetch();
-        $expensesSum = $row2['totalAmount'];
-        $sum=$incomesSum-$expensesSum;
+    if(isset($_POST['submit'])){
+        if(isset($_POST['startingDate']) && isset($_POST['endingDate'])){
+            if($_POST['startingDate'] < $_POST['endingDate']){
+                $startingDate = $_POST['startingDate'];
+                $endingDate = $_POST['endingDate'];
+            }
+            else{
+                $startingDate = $_POST['endingDate'];
+                $endingDate = $_POST['startingDate'];
+            }
+    
+            require_once 'database.php';
+            $user_id = $_SESSION['logged_id'];
+            $sql_show_incomes = $db->prepare("SELECT e.date, e.money, ep.name, ec.name, e.comment 
+                FROM expenses AS e INNER JOIN expense_categories AS ec ON e.user_id = ec.user_id 
+                AND e.expense_type_id=ec.id INNER JOIN payment_methods AS ep ON e.user_id = ep.user_id 
+                AND e.pay_method_id = ep.id WHERE e.user_id=31 AND date BETWEEN
+                    :startingDate AND :endingDate ORDER BY date DESC");
+            $sql_show_expenses->bindValue(':startingDate', $startingDate, PDO::PARAM_STR); 
+            $sql_show_expenses->bindValue(':endingDate', $endingDate, PDO::PARAM_STR); 
+            $sql_show_expenses->execute();   
+            $expenses = $sql_show_incomes->fetchAll();
+    
+            $sql_sum_expenses = $db->prepare("SELECT ROUND(SUM(money),2) as totalAmount FROM expenses 
+                WHERE user_id=$user_id AND date BETWEEN :startingDate AND :endingDate");
+            $sql_sum_expenses->bindValue(':startingDate', $startingDate, PDO::PARAM_STR);
+            $sql_sum_expenses->bindValue(':endingDate', $endingDate, PDO::PARAM_STR);
+            $sql_sum_expenses->execute();
+            $row=$sql_sum_expenses->fetch();
+            $sum = $row['totalAmount'];
+        }    
+    }else{
+        $sum = 0; $startingDate = 0; $endingDate = 0; $expenses = [];
+    }    
 ?>
+
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -51,7 +56,7 @@
 	   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="style1.css">
     </head>
-    <body>
+    <body>        
         <div class="d-flex justify-content-center main-menu" id="sidebar">
             <nav>
                 <div>
@@ -124,57 +129,78 @@
         </div>
         <div class="container-fluid mainContent justify-content-center">
             <div class="info-board d-flex justify-content-between text-center mb-3 ml-3">
-                    <div class="totalIncomesBox">
-                        <h3>BILANS</h3>
-                        <p class="incomeBox">na dzień</p>
-                        <?php echo "<p>$today</p>" ?>
-                        <?php echo "<p class='incomeBoxInt'>$sum</p>" ?>
-                    </div>
+                <div class="totalIncomesBox">
+                    <h3>SUMA WYDATKÓW</h3>
+                    <p class="incomeBox">w okresie od</p>
+                    <p><?php echo $startingDate ?> do <?php echo $endingDate ?></p>
+                    <?php echo "<p class='incomeBoxInt'>$sum</p>" ?>
                 </div>
-                <div class="info-board ml-3">
-                    <div class="d-flex row justify-content-between">
-                    <button class="mainBtn showTransactionsBtn" type="button" onclick="location.href='showThisWeekExpenses.php'">Bieżący tydzień</button>
-                        <button class="mainBtn showTransactionsBtn" type="button" onclick="location.href='showThisMonthExpenses.php'">Bieżący miesiąc</button>
-                        <button class="mainBtn showTransactionsBtn" type="button" onclick="location.href='showLastMonthExpenses.php'">Poprzedni miesiąc</button>
-                        <button class="mainBtn showTransactionsBtn" type="button" data-toggle="collapse" data-target="#collapseChoosePeriod" aria-expanded="false" aria-controls="collapseChoosePeriod">Wybierz okres</button>
-                    </div>
-                    <div class="collapse" id="collapseChoosePeriod">
-                        <div class="card card-body mt-2">
-                            <form action="showChosenPeriodIncomes.php" method="post">
-                                <div class="form-group">
-                                    <label>Podaj datę początkową</label>
-                                    <input class="form-control" type="date" name="startingDate">
-                                    <?php
-                                        if (isset($_SESSION['e_date'])){
-                                            echo '<div class="error">'.$_SESSION['e_date'].'</div>';
-                                            unset($_SESSION['e_date']);
-                                        }
-                                    ?>  
-                                </div>
-                                <div class="form-group">
-                                    <label>Podaj datę końcową</label>
-                                    <input class="form-control" type="date" name="endingDate">
-                                    <?php
-                                        if (isset($_SESSION['e_date'])){
-                                            echo '<div class="error">'.$_SESSION['e_date'].'</div>';
-                                            unset($_SESSION['e_date']);
-                                        }
-                                    ?>  
-                                </div>
-                                <input class="mainBtn" type="submit" name="submit" value="Wybierz">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <footer>
-                    <div class="row justify-content-center">
-                        <p>&copy; Sylwia Brant, 2019</p>
-                        <div>Icons made by<a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-                        </div>
-                    </div>
-                </footer>
             </div>
-        </div>    
+            <div class="info-board ml-3">
+                <div class="d-flex justify-content-between">
+                    <button class="mainBtn showTransactionsBtn" type="button" onclick="location.href='showThisWeekExpenses.php'">Bieżący tydzień</button>
+                    <button class="mainBtn showTransactionsBtn" type="button" onclick="location.href='showThisMonthExpenses.php'">Bieżący miesiąc</button>
+                    <button class="mainBtn showTransactionsBtn" type="button" onclick="location.href='showLastMonthExpenses.php'">Poprzedni miesiąc</button>
+                    <button class="mainBtn showTransactionsBtn" type="button" data-toggle="collapse" data-target="#collapseChoosePeriod" aria-expanded="false" aria-controls="collapseChoosePeriod">Wybierz okres</button>
+                </div>
+                <div class="collapse" id="collapseChoosePeriod">
+                    <div class="card card-body mt-2">
+                        <form action="showChosenPeriodExpenses.php" method="post">
+                            <div class="form-group">
+                                <label>Podaj datę początkową</label>
+                                <input class="form-control" type="date" name="startingDate">
+                                <?php
+                                    if (isset($_SESSION['e_date'])){
+                                        echo '<div class="error">'.$_SESSION['e_date'].'</div>';
+                                        unset($_SESSION['e_date']);
+                                    }
+                                ?>  
+                            </div>
+                            <div class="form-group">
+                                <label>Podaj datę końcową</label>
+                                <input class="form-control" type="date" name="endingDate">
+                                <?php
+                                    if (isset($_SESSION['e_date'])){
+                                        echo '<div class="error">'.$_SESSION['e_date'].'</div>';
+                                        unset($_SESSION['e_date']);
+                                    }
+                                ?>  
+                            </div>
+                            <input class="mainBtn" type="submit" name="submit" value="Wybierz">                  
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex incomesTable my-5 mr-3">
+                <table class="table bg-light table-striped ml-3">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Wysokość przychodu</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Rodzaj przychodu</th>
+                        <th scope="col">Komentarz</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $recordNumber=1;
+                            foreach($expenses as $expense)
+                            {
+                                echo "<tr>";
+                                echo "<th scope='row'>$recordNumber</th>";
+                                echo "<td>" . $expense['money'] ."</td>";
+                                echo "<td>" . $expense['date'] . "</td>";
+                                echo "<td>" . $expense['name'] . "</td>";
+                                echo "<td>" . $expense['comment'] . "</td>";
+                                echo "</tr>";
+                            $recordNumber++;
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <!-- Add Income Modal -->
         <div class="modal" id="incomeModal">
             <div class="modal-dialog">
@@ -297,12 +323,11 @@
                     </div>
                 </div>
             </div>
-        </div>   
-    <!-- Bootstrap JS -->
-    
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
-</body>
+        </div> 
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>

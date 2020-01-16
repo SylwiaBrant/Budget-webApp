@@ -1,48 +1,246 @@
-.footerArea{
-    color: rgb(230,230,230);
-}
-
+/*     COLOURS
+rgb(231, 68, 95) - pink 
+*/
 body{
-    color: rgb(52, 58, 64);
-    background-image: url("img/writing-sationary.jpg");
+   margin: 0;
+   padding: 0;
+}
+.container-fluid.entryPage{
+    background-color:  rgb(28, 37, 56);
+    min-height: 100vh;
+
+}
+.container.entryPage{
+    background-color: white;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgb(16, 19, 24);
+    box-sizing: border-box;
+    padding: 0;
+}
+.banner-wrapper{
+    height: 100vh;
+    background-image:linear-gradient(rgb(57, 67, 80, 0.8),rgba(57, 67, 80, 0.8)),url("img/change.jpg");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
 }
 
-.container.mainPage{
-    background-color: rgb(250,250,250,0.7);
-    padding-top: 4.5em;
+.logo{
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+}
+@media screen and (max-width: 768px){
+    .banner-wrapper{
+        height: 100px;
+        font-size: 0.5em;
+    }    
+}
+a.link{
+    color: rgb(231, 68, 95);
+}
+.mainContent{
     height: 100vh;
+    padding: 10px 20px;
+    background-color: rgb(222, 227, 233);
+    padding-left: 250px;
+    box-sizing: border-box;
 }
 
-a.navbar-brand.logo{
-    font-family: 'Oswald';
-    color: rgb(230,230,230);
+.form-wrapper{
+    background-color: white;
+}
+.imgBanner{
+    filter: sepia();
+}
+h1{
+    font-weight: bold;
+    color: rgb(231, 193, 68);
+    font-size: 2em;
 }
 
-a.navbar-brand.logo:hover{
-    font-family: 'Oswald';
-    color: rgb(230,230,230,0.5);
+.info-board{
+    background-color: rgb(241, 241, 241);
+    padding: 20px;
+    box-shadow: 0 0 1em rgb(93, 102, 109);
 }
 
-.btn:focus,.btn:active:focus,.btn.active:focus{
-    outline: none;
-    box-shadow: none;
+@media screen and (max-width: 768px) {
+    .mainContent {
+        padding-left: 80px;
+    }
 }
 
-.btn-secondary.active:focus, .btn-secondary:active:focus, .show>.btn-secondary.dropdown-toggle:focus {
-    box-shadow: none;
+@media screen and (max-width: 576px) {
+    .mainContent {
+        padding-left: 40px;
+    }
 }
 
-.btnSpecified{
-    background-color: rgb(116, 150, 180);
+/*----------------------MAIN NAVIGATION STYLES------------------------*/
+
+.main-menu{
+    float: left;
+    position: fixed; 
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+    height: 100%;    
+    box-shadow: 0 0 1em rgb(93, 102, 109);
+    color: whitesmoke;
+    z-index: 1;
+    background-position: center;
+    background-image: fixed;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(51, 69, 90, 0.9), rgb(4, 11, 26, 0.9)), url("img/change.jpg");
+}
+
+li, li ul li{
+    min-width: 100%;
+    max-width: 100%;
+    border-top: 1px solid rgb(34, 42, 59);
+}
+
+a.dropdown-toggle{
+    line-height: 39px;
+}
+
+.main-menu li:active{
+    background-color: white;
+    color:rgb(34, 42, 59);
+}
+
+li:hover{
+    background: linear-gradient(rgb(66, 93, 124, 0.4),rgb(66, 93, 124, 0.4));
+}
+
+.nav li:active{
+    background: linear-gradient(rgb(66, 93, 124),rgb(66, 93, 124));
+}
+/*
+ul li.currentPage{
+    background: linear-gradient(rgb(222, 227, 233), rgb(222, 227, 233));
+    z-index: 15;
+} */
+
+
+@media screen and (max-width: 768px){
+    #navCollapse{
+        cursor: pointer;
+    }
+
+    #sidebar.active{
+        min-width: 80px;
+        max-width: 80px;
+    }
+
+    #sidebar.active ul.nav{
+        display: none;
+    }
+
+    .arrow {
+        width: 0; 
+        height: 0; 
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-right: 6px solid white;
+        display: inline-block;
+        margin-top: 7px;
+        margin-left: 7px;
+      }
+
+    #sidebar.active .arrow {
+        border-left: 6px solid white;
+        border-right: 0;
+      }
+}
+@media screen and (max-width: 576px){
+    #navCollapse{
+        cursor: pointer;
+    }
+
+    #sidebar.active{
+        min-width: 40px;
+        max-width: 40px;
+    }
+
+    #sidebar.active h2{
+        display: none;
+    }
+
+    #sidebar.active ul.nav{
+        display: none;
+    } 
+    #sidebar.active .arrow {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid white;
+        border-right: 0;
+      }
+}
+
+.totalIncomesBox{
+    background-image: linear-gradient(to bottom right, rgb(231, 193, 68), rgb(231, 68, 95));
+    color: white;
+    padding: 0.8em;
+    border-radius: 0.1em;
+}
+.totalIncomesBox h3{
+    font-weight: 600;
+    font-size: 1.2em;
+    color: white;
+}
+.totalIncomesBox p.incomeBox{
+    font-size: 1.1em;
+    line-height: 0.5em;
+    color: white;
+}
+.totalIncomesBox p.incomeBoxInt{
+    font-size: 2em;
+    margin-bottom: 0;
+    color: white;
+}
+
+/*----------------------BUTTON STYLES------------------------*/
+
+.mainBtn{
+    margin: 5px;
     border: none;
-    border-radius: 10px;
+  /*  border-top: 1px solid rgb(51, 69, 90, 0.9);
+    border-bottom: 1px solid rgb(51, 69, 90); */
+    border-radius: 2px;
+    color: white;
+    max-width: 300px;
     min-width: 100px;
+    padding: 3px 10px 6px 10px;
+    box-shadow: 0 0 5px rgb(16, 19, 24);
+    background-image: linear-gradient(to bottom right, rgb(219, 163, 59), rgb(204, 57, 81));
 }
 
-img.icon{
+.mainBtn:hover{
+    background-image: linear-gradient(to bottom right, rgb(231, 193, 68), rgb(231, 68, 95));
+}
+
+.mainBtn:active{
+    background-image: linear-gradient(to bottom right, rgb(192, 117, 47), rgb(201, 45, 45));
+}
+
+.showTransactionsBtn{
+    background-image: linear-gradient(rgb(43, 59, 80), rgb(8, 17, 34));
+    min-width: 250px;
+    min-height: 50px;
+    max-height: 90px;
+}
+
+@media screen and (max-width: 500px){
+    .mainBtn{
+        max-width: 100%;
+        width: 100%;
+    }
+
+}
+img.icon{   
     height:100px;
 }
 
@@ -61,48 +259,52 @@ a:hover{
 }
 
 .transactionsBtn{
-    border: 2px solid #343a40;
-    background-color: white;
+    border: none;
+    color: whitesmoke;
+    background-image: linear-gradient(to top right, rgb(51, 69, 90), rgb(34, 42, 59));
     cursor: pointer;
 }
 
 .transactionsBtn:hover{
-    background-color: rgb(172, 193, 211);
+    background-color: rgb(44, 72, 97);
 }
 
 h2{
     font-size: 1.2em;
 }
 
-.quote{
-    padding: 1em;
-    text-align: justify;
-    font-style: italic;
-}
-
-.quoteAuthor{
-    text-align: end;
-}
-
-
-.card{
-    max-width: 30em;
-}
 .error{
     color: red;
 }
 
-.card-header{
-    background-color: rgb(116, 150, 180);
+.modal-header, .modal-footer{
+    border: none;
 }
 
+.modal-content{
+    background-image: linear-gradient(rgb(51, 69, 90, 0.9), rgb(4, 11, 26, 0.9)), url("img/change.jpg");
+    background-position: center;
+    color: white;
+}
+
+/*----------------------FORM STYLES------------------------*/
 .form-control{
     border: none;
-    border-radius: 0;
+    border-radius: 2px;
     border-bottom: 1px solid;
 }
+
 input.form-control.inputSlot:focus, input.form-control.inputSlot.active:focus, input.form-control.inputSlot:active:focus{
     box-shadow: none;
     border: none;
     border-bottom: 2px solid rgb(116, 150, 180);
+    color: rgb(25, 44, 61);
+}
+
+.input-group img{
+    color: rgb(25, 44, 61);;
+}
+
+table{
+    margin: 0 15px;
 }
